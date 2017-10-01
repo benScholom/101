@@ -1,14 +1,32 @@
-/**
- * @module 101/pluck
- */
-
 var isObject = require('./is-object');
 var exists = require('./exists');
 var keypather = require('keypather')();
 
 /**
+ * @description
  * Functional version of obj[key], returns the value of the key from obj.
  * When only a key is specified pluck returns a partial-function which accepts obj.
+ * @example
+ * var pluck = require('101/pluck');
+ * var obj = {
+ *   foo: 1,
+ *   bar: 2
+ * };
+ * pluck(obj, 'foo'); // 1
+ * // use it with array.map
+ * [obj, obj, obj].map(pluck('foo')); // [1, 1, 1]
+ * // supports keypaths by default
+ * var obj = {
+ *   foo: {
+ *     bar: 1
+ *   },
+ *   'foo.bar': 2
+ * };
+ * pluck(obj, 'foo.bar'); // 1, supports keypaths by default
+ * pluck(obj, 'foo.bar', false); // 2, pass false to not use keypaths
+ * 
+ * @module 101/pluck
+ *
  * @function module:101/pluck
  * @param {object} [obj] - object from which the value is plucked
  * @param {string|array} key - key of the value from obj which is returned

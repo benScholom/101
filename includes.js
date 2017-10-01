@@ -1,17 +1,34 @@
 /**
+ * @description
  * Assert if a given array contains a value
+ * @example
+ * var includes = require('101/includes');
+ * var haystack = ['a', 'b', 'c', 'd', 'e'];
+ * includes(haystack, 'c'); // true
+ * // optional 3rd argument, searchFrom. Begin searching the target array from a specified index.
+ * includes(haystack, 'c', 3); // false
+ * includes(haystack, 'c', 0); // true
+ * // partial argument functionality
+ * var i = includes(haystack);
+ * i('c') // true
+ * i('g') // false
+ * // example composition usage:
+ * var not = require('101/not');
+ * var notIn = not(includes);
+ * [1, 2, 3, 4, 5].filter(notIn([1, 2, 3])); // [4, 5]
+ * 
  * @module 101/includes
+ * 
+ * @param {Array} array
+ * @param {*} searchElement
+ * @param {Number} fromIndex
+ * @return Boolean
+ *
  */
 'use strict';
 
 var isNumber = require('./is-number');
 
-/**
- * @param {Array} array
- * @param {*} searchElement
- * @param {Number} fromIndex
- * @return Boolean
- */
 module.exports = function (array, searchElement, fromIndex) {
   if (arguments.length === 1) {
     return includes.bind(null, array);

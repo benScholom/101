@@ -1,11 +1,14 @@
-/**
- * @module 101/pass-any
- */
-
 var isFunction = require('./is-function');
 
 /**
+ * @description
  * Muxes arguments across many functions and ||'s the results
+ * @example
+ * var passAny = require('101/pass-any');
+ * ['', 'foo', 'bar', 100].map(passAny(isString, isNumber)); // [true, true, true, true]
+ * 
+ * @module 101/pass-any
+ *
  * @function module:101/pass-any
  * @param {function} funcs... - functions which return a boolean
  * @return {function} function which accepts args which it applies to funcs and ||s the results

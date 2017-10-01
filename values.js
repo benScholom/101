@@ -1,14 +1,23 @@
-/**
- * Retrieve the values of an object's properties
- * @module 101/values
- */
+
 'use strict';
 
 module.exports = values;
 
 /**
+ * @description
  * Borrowing from underscorejs
  * https://github.com/jashkenas/underscore
+ * Retrieve the values of an object's properties
+ * @example
+ * var values = require('101/values');
+ * var obj {
+ *   foo: 'apple',
+ *   bar: 'orange'
+ * };
+ * var objValues = values(obj);
+ * objValues // ['apple', 'orange']
+ * @module 101/values
+ *
  * @param {Object} obj
  * @return {Array}
  */

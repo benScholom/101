@@ -1,13 +1,16 @@
-/**
- * @module 101/pass-all
- */
-
 var isFunction = require('./is-function');
 var and = require('./and');
 var apply = require('./apply');
 
 /**
+ * @description
  * Muxes arguments across many functions and &&'s the results
+ * @example
+ * var passAll = require('101/pass-all');
+ * ['', 'foo', 'bar', 100].map(passAll(isString, isTruthy)); // [false, true, true, false]
+ * 
+ * @module 101/pass-all
+ *
  * @function module:101/pass-all
  * @param {function} funcs... - functions which return a boolean
  * @return {function} function which accepts args which it applies to funcs and &&s the results

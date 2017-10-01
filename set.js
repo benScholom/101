@@ -1,15 +1,33 @@
-/**
- * @module 101/set
- */
-
 var isString = require('./is-string');
 var isNumber = require('./is-number');
 var isObject = require('./is-object');
 var keypather = require('keypather')();
 
 /**
+ * @description
  * Functional version of obj[key] = val.
  * When only a key and val are specified set returns a partial-function which accepts obj.
+ * @example
+ * var set = require('101/set');
+ * var obj = {
+ *   foo: 1,
+ *   bar: 2
+ * };
+ * set(obj, 'foo'); // 1
+ * // use it with array.map
+ * [obj, obj, obj].map(set('foo', 100)); // [{ foo: 100, bar: 2 }, {same}, {same}]
+ * // supports keypaths by default
+ * var obj = {
+ *   bar: 2
+ * };
+ * set(obj, 'foo.qux', 100); // { foo: { qux: 100 }, bar: 2 }
+ * set(obj, {
+ *   'foo.qux': 100
+ *   'yolo': 1
+ * }); // { foo: { qux: 100 }, bar: 2, yolo: 1 }
+ * 
+ * @module 101/set
+ *
  * @function module:101/set
  * @param {*} [obj] - object on which the values will be set
  * @param {string} key - key of the value being set on obj

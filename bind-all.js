@@ -1,12 +1,31 @@
-/**
- * @module 101/bind-all
- */
-
 var isFunction = require('./is-function');
 var keysIn = require('./keys-in');
 /**
+ * @description
  * Bind a passed object methods.
  * If methods name to bing are not specified, all the object methods are binded
+ * @example
+ * var bindAll = require('101/bind-all');
+ * var obj = {
+ *     init: function() {
+ *       this.on(this.handler);
+ *   },
+ *   on: function(handler) {
+ *       return handler();
+ *   },
+ *   handler: function() {
+ *       console.log(this.msg);
+ *   },
+ *   msg: 'Hello World'
+ * }
+ * obj.init(); // undefined
+ * bindAll(obj);
+ * obj.init(); // "Hello World"
+ * bindAll(obj, ['handler']);
+ * obj.init(); // "Hello World"
+ * 
+ * @module 101/bind-all
+ *
  * @function module:101/bind-all
  *
  * @param {object} object - object to bind

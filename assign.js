@@ -1,11 +1,20 @@
-/**
- * @module 101/assign
- */
+
 
 /**
+ * @description
  * Copies enumerable and own properties from a source object(s) to a target object, aka extend.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
  * I added functionality to support assign as a partial function
+ * @example
+ * var assign = require('101/assign');
+ * var target = { foo: 1 };
+ * var source1 = { bar: 1 };
+ * var source2 = { baz: 1 };
+ * assign(target, source1) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
+ * assign(target, source1, source2) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
+ * 
+ * @module 101/assign
+ *
  * @function module:101/assign
  * @param {object} [target] - object which source objects are extending (being assigned to)
  * @param {object} sources... - objects whose properties are being assigned to the source object

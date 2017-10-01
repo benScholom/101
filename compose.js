@@ -1,9 +1,14 @@
-/**
- * @module 101/compose
- */
+
 
 /**
- * [compose description]
+ * @description
+ * Functional composition method. Works great with array.reduce.
+ * @example
+ * var compose = require('101/compose');
+ * compose(isNaN, parseInt)('nope'); // isNaN(parseInt('nope')) // true
+ * 
+ * @module 101/compose
+ *
  * @function module:101/compose
  * @param {function} f
  * @param {function} g

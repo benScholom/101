@@ -1,11 +1,20 @@
-/**
- * @module 101/curry
- */
- 
 var slice = Array.prototype.slice;
 
 /**
+ * @description
  * Returns a curried function
+ * @example
+ * var curry = require('101/curry');
+ * function add(a, b) { return a + b; }
+ * var curriedAdd = curry(add);
+ * var add2 = curriedAdd(2);
+ * add2(6); // 8
+ * add2(8); // 10
+ * function join() { return Array.prototype.slice.call(arguments).join(''); }
+ * curry(join, 3)(1)(0)(1); // "101"
+ * 
+ * @module 101/curry
+ *
  * @function module:101/curry
  * @param {function} f - function to be curried
  * @param {integer} [n] - how many arguments to curry

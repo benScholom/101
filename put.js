@@ -1,7 +1,3 @@
-/**
- * @module 101/put
- */
-
 var clone = require("./clone");
 var isString = require('./is-string');
 var isNumber = require('./is-number');
@@ -9,8 +5,33 @@ var isObject = require('./is-object');
 var keypather = require('keypather')();
 
 /**
+ * @description
  * Immutable version of obj[key] = val.
  * When only key and val are specified, put returns a partial function which accepts obj.
+ * @example
+ * var put = require('101/put');
+ * var obj = {
+ *   foo: 1,
+ *   bar: 2
+ * };
+ * put(obj, 'baz', 3); // { foo: 1, bar:2, baz: 3 }
+ * obj; // { foo: 1, bar: 2 } (not modified)
+ * // use it with array.map
+ * [obj, obj, obj].map(put('foo', 100)); // [{ foo: 100, bar: 2 }, {copy}, {copy}]
+ * obj; // { foo: 1, bar: 2 } (not modified)
+ * // supports keypaths by default
+ * var obj = {
+ *   bar: 2
+ * };
+ * put(obj, 'foo.qux', 100); // { foo: { qux: 100 }, bar: 2 }
+ * put(obj, {
+ *   'foo.qux': 100
+ *   'yolo': 1
+ * }); // { foo: { qux: 100 }, bar: 2, yolo: 1 }
+ * obj; // { foo: 1, bar: 2 } (not modified)
+ * 
+ * @module 101/put
+ *
  * @function module:101/put
  * @param {*} [obj] - object which will be cloned and assigned with {key: value}
  * @param {string|number} key - key of the value being put on obj

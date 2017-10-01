@@ -1,7 +1,3 @@
-/**
- * @module 101/pick
- */
-
 var exists = require('./exists');
 var isObject = require('./is-object');
 var isRegExp = require('./is-regexp');
@@ -12,8 +8,31 @@ var isKeypath = function (val) {
 }
 
 /**
+ * @description
  * Returns a new object with the specified keys (with key values from obj).
  * When only keys are specified pick returns a partial-function which accepts obj.
+ * @example
+ * var pick = require('101/pick');
+ * var obj = {
+ *   foo: 1,
+ *   bar: 2,
+ *   qwk: {
+ *     wrk: 1
+ *   },
+ *   'qwk.wrk': 2
+ * };
+ * pick(obj, 'foo');          // { foo: 1 }
+ * pick(obj, RegExp('oo$'));  // { foo: 1 }
+ * pick(obj, ['foo']);        // { foo: 1 }
+ * pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
+ * // use it with array.map
+ * [obj, obj, obj].map(pick('foo')); // [{ foo: 1 }, { foo: 1 }, { foo: 1 }];
+ * // supports keypaths
+ * pick(obj, 'qwk.wrk');      // { qwk: { wrk: 1 } }
+ * pick(obj, '["qwk.wrk"]');  // { 'qwk.wrk': 2 } }
+ *
+ * @module 101/pick
+ *
  * @function module:101/pick
  * @param {object} [obj] - object whose keys are picked
  * @param {string|regexp|array} keys... - keys which will be taken from obj, can be specifieds as args (strings, regular epxressions, and/or arrays)

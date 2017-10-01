@@ -1,9 +1,14 @@
 /**
- * @module 101/equals
- */
-
-/**
+ * @description
  * Functional implementation of Object.is with polyfill for browsers without implementations of Object.is
+ * @example
+ * var equals = require('101/equals');
+ * equals(1, 1);            // true
+ * [1,2,3].some(equals(1)); // true
+ * equals(1, '1');          // false
+ * 
+ * @module 101/equals
+ * 
  * @function module:101/equals
  * @param {*} a - any value
  * @param {*} b - any value

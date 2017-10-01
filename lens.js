@@ -1,14 +1,36 @@
-/**
- * @module 101/lens
- */
-
 var get = require('./pluck');
 var put = require('./put');
 var curry = require('./curry');
 var clone = require('./clone');
 
 /**
- * Returns a lens
+ * @description
+ * Create a lens to access a data structure. When passed a property key as a string, it returns a function fn(obj) that acts as a getter for that. 
+ * It also exposes .set(value, obj) and .mod(fn, obj).
+ * @example
+ * var fooLens = lens('foo');
+ * var toUpper = function(str) { return str.toUpperCase(); };
+ * var obj = {
+ *   foo: 'foo',
+ *   bar: 'bar'
+ * };
+ * fooLens(obj); // => 'foo'
+ * fooLens.set('moo', obj); // => { foo: 'moo', bar: 'bar' }
+ * fooLens.mod(toUpper, obj); // => { foo: 'MOO', bar: 'bar' }
+ * 
+ * @example
+ * // You may also provide getter and setter functions.
+ * var arr = ['foo', 'bar'];
+ * var first = lens(
+ *     function(arr) { return arr[0]; },
+ *     function(val, arr) { var clone = arr.slice(); clone[0] = val; return clone; }
+ * );
+ * first(arr); // => 'foo'
+ * first.set('moo')(arr); // => ['moo', 'bar']
+ * first.mod(toUpper)(arr); // => ['FOO', 'bar']
+ * 
+ * @module 101/lens
+ *
  * @function module:101/lens
  * @param {string|function} key|getter - key or getter function
  * @param {function} [setter] - setter function

@@ -1,14 +1,26 @@
-/**
- * @module 101/find
- */
-
 var isFunction = require('./is-function');
 var exists = require('./exists');
 var findIndex = require('./find-index');
 
 /**
+ * @description
  * Finds the first value in the list that passes the given function (predicate) and returns it's index.
  * If list is not provided find will return a partial-function which accepts a list as the first argument.
+ * @example
+ * var find = require('101/find');
+ * var hasProps = require('101/has-properties');
+ * var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
+ * var item = find(arr, hasProps({ a:1 }));
+ * // returns { a: 1, b: 1 }
+ * // returns null if not found
+ * // partial-function
+ * var partial = find(hasProps({ a: 1 }));
+ * var item = partial(arr);
+ * // returns { a: 1, b: 1 }
+ * // returns null if not found
+ * 
+ * @module 101/find
+ *
  * @function module:101/find
  *
  * @param {array|string} list - list to be searched

@@ -1,9 +1,14 @@
 /**
- * @module 101/apply
- */
-
-/**
+ * @description
  * Functional version of function.apply
+ * @example
+ * var apply = require('101/apply');
+ * [sum].map(apply(null, [1, 2, 3])); // [6] = [sum(1,2,3)] = [1+2+3]
+ * function sum () {  // sums all arguments  }
+ * apply({ prop: 'val' })(function () { return this.prop; });  // 'val
+ * 
+ * @module 101/apply
+ * 
  * @function module:101/apply
  * @param {*} thisArg - Context applied to fn
  * @param {array} args - Arguments applied to fn

@@ -1,6 +1,4 @@
-/**
- * @module 101/has-properties
- */
+
 
 var eql = require('deep-eql');
 var isObject = require('./is-object');
@@ -8,8 +6,30 @@ var isBoolean = require('./is-boolean');
 var isArray = Array.isArray;
 
 /**
+ * @description
  * Determines whether the keys exist and, if specified, has the values.
  * If obj is not provided findIndex will return a partial function which accepts a obj as the first argument.
+ * @example
+ * var hasProps = require('101/has-properties');
+ * var obj = {
+ *   qux: 1
+ * };
+ * obj['foo.bar'] = 1
+ * hasProps(obj, ['foo', 'qux']); // true
+ * hasProps(obj, { qux: 1 }) // true
+ * // optional 'deep' arg, defaults to true
+ * var barObj = { bar: 1 };
+ * hasProps(obj, { 'foo.bar': barObj });         // true
+ * hasProps(obj, { 'foo.bar': barObj }, true);   // true
+ * hasProps(obj, { 'foo.bar': barObj }, false);  // false
+ * hasProps(obj, ['foo.bar'], false);            // true, uses [hasOwnProperty vs in](http://stackoverflow.com/questions/13632999/if-key-in-object-or-ifobject-hasownpropertykey)
+ * // use it with find, findIndex, or filter!
+ * var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
+ * find(arr, hasProps({ a:1 })); // { a: 1, b: 1 }
+ * find(arr, hasProps(['a']));   // { a: 1, b: 1 }
+ * 
+ * @module 101/has-properties
+ *
  * @function module:101/has-properties
  * @param {object} [obj] - the object whose properties being checked
  * @param {object|array} properties - keys and values (object) or keys expected to exist on the object (array)

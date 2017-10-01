@@ -1,13 +1,23 @@
-/**
- * @module 101/find-index
- */
+
 
 var isFunction = require('./is-function');
 var exists = require('./exists');
 
 /**
+ * @description
  * Finds the first value in the list that passes the given function (predicate) and returns it's index.
  * If list is not provided findIndex will return a partial-function which accepts a list as the first argument.
+ * @example
+ * var findIndex = require('101/find-index');
+ * var arr = [1, 2, 3];
+ * var index = findIndex(arr, function (val, i, arr) {
+ *   return val === 2;
+ * });
+ * // returns 1
+ * // returns -1 if not found
+ * 
+ * @module 101/find-index
+ *
  * @function module:101/find-index
  *
  * @param {array|string} list - list to be searched
